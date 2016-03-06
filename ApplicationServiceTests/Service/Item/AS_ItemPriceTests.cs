@@ -1,8 +1,8 @@
 ﻿using ApplicationService.Interface.Item;
 using DomainModel.ItemDomainModels;
+using ExpectedObjects;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using ExpectedObjects;
 
 namespace ApplicationService.Service.Item.Tests
 {
@@ -31,14 +31,13 @@ namespace ApplicationService.Service.Item.Tests
             int second = 3;
 
             List<int> expected = new List<int>() { 6, 15, 24, 21 };
+            IAS_ItemPrice target = new AS_ItemPrice();
 
             //act 測試目標行為
-            IAS_ItemPrice _iasItemPrice = new AS_ItemPrice();
-            var actual = _iasItemPrice.GetSumByCostList(first, second);
+            var actual = target.GetSumByCostList(first, second);
 
             //assert 驗證目標行為
             expected.ToExpectedObject().ShouldEqual(actual);
-
 
             //Assert.Fail();
         }
@@ -65,19 +64,15 @@ namespace ApplicationService.Service.Item.Tests
             int second = 4;
 
             List<int> expected = new List<int>() { 50, 66, 60 };
+            IAS_ItemPrice target = new AS_ItemPrice();
 
             //act 測試目標行為
-            IAS_ItemPrice _iasItemPrice = new AS_ItemPrice();
-            var actual = _iasItemPrice.GetSumByRevenueList(first, second);
+            var actual = target.GetSumByRevenueList(first, second);
 
             //assert 驗證目標行為
             expected.ToExpectedObject().ShouldEqual(actual);
 
-
-
             //Assert.Fail();
         }
-
-
     }
 }
