@@ -26,14 +26,15 @@ namespace TDD_Day1_HomeWork
             _dmItemPriceList.Add(CreateData(11, 11, 21, 31));
 
             IAS_ItemPrice _iasItemPrice = new AS_ItemPrice();
+            #region 第一版本
             List<int> _intGetSumByCostList = _iasItemPrice.GetSumByCostList(_dmItemPriceList, 3);
             List<int> _intGetSumByRevenueList = _iasItemPrice.GetSumByRevenueList(_dmItemPriceList,4);
 
-            string _strGroupByCostList = "", _strGroupByRevenueList="";
+            string _strGroupByCostList = "", _strGroupByRevenueList = "";
 
-            for(int i=0;i< _intGetSumByCostList.Count;i++)
+            for (int i = 0; i < _intGetSumByCostList.Count; i++)
             {
-                if(i== (_intGetSumByCostList.Count-1))
+                if (i == (_intGetSumByCostList.Count - 1))
                 {
                     _strGroupByCostList += _intGetSumByCostList[i];
                 }
@@ -41,7 +42,7 @@ namespace TDD_Day1_HomeWork
                 {
                     _strGroupByCostList += _intGetSumByCostList[i] + ",";
                 }
-               
+
             }
 
             for (int i = 0; i < _intGetSumByRevenueList.Count; i++)
@@ -57,8 +58,48 @@ namespace TDD_Day1_HomeWork
                 }
             }
 
+            #endregion
+
+            #region 第二版本
+            List<int> _intGetSumByCostList1 = _iasItemPrice.GetSumBydmItemPrice(_dmItemPriceList, 3,DM_ItemPriceEnum.Cost);
+            List<int> _intGetSumByRevenueList2 = _iasItemPrice.GetSumBydmItemPrice(_dmItemPriceList, 4, "Revenue");
+
+            
+            string _strGroupByCostList1 = "", _strGroupByRevenueList2="";
+
+           
+
+            for (int i = 0; i < _intGetSumByCostList1.Count; i++)
+            {
+                if (i == (_intGetSumByCostList1.Count - 1))
+                {
+                    _strGroupByCostList1 += _intGetSumByCostList1[i];
+                }
+                else
+                {
+                    _strGroupByCostList1 += _intGetSumByCostList1[i] + ",";
+                }
+
+            }
+
+            for (int i = 0; i < _intGetSumByRevenueList2.Count; i++)
+            {
+
+                if (i == (_intGetSumByRevenueList2.Count - 1))
+                {
+                    _strGroupByRevenueList2 += _intGetSumByRevenueList2[i];
+                }
+                else
+                {
+                    _strGroupByRevenueList2 += _intGetSumByRevenueList2[i] + ",";
+                }
+            }
+            #endregion
+
             Console.WriteLine("Cost總和："+ _strGroupByCostList);
             Console.WriteLine("Revenue總和："+ _strGroupByRevenueList);
+            Console.WriteLine("反射Cost總和：" + _strGroupByCostList1);
+            Console.WriteLine("反射Revenue總和：" + _strGroupByRevenueList2);
             Console.Read();
         }
 

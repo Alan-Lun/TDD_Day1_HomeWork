@@ -13,4 +13,13 @@ namespace DomainModel.ItemDomainModels
         public int Revenue { get; set; }
         public int SellPrice { get; set; }
     }
+
+    public enum DM_ItemPriceEnum
+    {
+        Id,
+        Cost,
+        Revenue,
+        SellPrice
+    }
+
 }

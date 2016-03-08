@@ -1,4 +1,5 @@
-﻿using ApplicationService.Interface.Item;
+﻿using ApplicationService.Service.Item;
+using ApplicationService.Interface.Item;
 using DomainModel.ItemDomainModels;
 using ExpectedObjects;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -71,6 +72,41 @@ namespace ApplicationService.Service.Item.Tests
 
             //assert 驗證目標行為
             expected.ToExpectedObject().ShouldEqual(actual);
+
+            //Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void GetSumBydmItemPriceTest_dmItemPriceList_ListdmItemPrice_intGroupNum_3_strPropertyName_Cost_should_be_ListintItemWith4Item()
+        {
+            //arrange 初始化
+            List<DM_ItemPrice> ListdmItemPrice = new List<DM_ItemPrice>
+            {
+                new DM_ItemPrice {Id=1,Cost=1,Revenue=11,SellPrice=21 },
+                new DM_ItemPrice {Id=2,Cost=2,Revenue=12,SellPrice=22 },
+                new DM_ItemPrice {Id=3,Cost=3,Revenue=13,SellPrice=23 },
+                new DM_ItemPrice {Id=4,Cost=4,Revenue=14,SellPrice=24 },
+                new DM_ItemPrice {Id=5,Cost=5,Revenue=15,SellPrice=25 },
+                new DM_ItemPrice {Id=6,Cost=6,Revenue=16,SellPrice=26 },
+                new DM_ItemPrice {Id=7,Cost=7,Revenue=17,SellPrice=27 },
+                new DM_ItemPrice {Id=8,Cost=8,Revenue=18,SellPrice=28 },
+                new DM_ItemPrice {Id=9,Cost=9,Revenue=19,SellPrice=29 },
+                new DM_ItemPrice {Id=10,Cost=10,Revenue=20,SellPrice=30 },
+                new DM_ItemPrice {Id=11,Cost=11,Revenue=21,SellPrice=31 }
+            };
+
+            int intGroupNum = 3;
+            string strPropertyName = DM_ItemPriceEnum.Cost.ToString();
+            List<int> expected = new List<int>() { 6, 15, 24, 21 };
+            IAS_ItemPrice target = new AS_ItemPrice();
+
+            //act 測試目標行為
+            var actual = target.GetSumBydmItemPrice(ListdmItemPrice, intGroupNum, strPropertyName);
+
+            //assert 驗證目標行為
+            expected.ToExpectedObject().ShouldEqual(actual);
+
+
 
             //Assert.Fail();
         }
